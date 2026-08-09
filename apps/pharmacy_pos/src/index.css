@@ -1,0 +1,48 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body, #root { height: 100%; }
+
+:root {
+  --white:      #FFFFFF;
+  --bg:         #F4F5F7;
+  --border:     #DDE1E7;
+  --border-strong: #C1C7CF;
+  --text1:      #111318;
+  --text2:      #4B5363;
+  --text3:      #8A939E;
+  --green:      #16A34A;
+  --green-bg:   #F0FDF4;
+  --green-border:#BBF7D0;
+  --red:        #DC2626;
+  --red-bg:     #FEF2F2;
+  --red-border: #FECACA;
+  --amber:      #D97706;
+  --amber-bg:   #FFFBEB;
+  --amber-border:#FDE68A;
+  --blue:       #2563EB;
+  --blue-bg:    #EFF6FF;
+  --font:       'IBM Plex Sans', system-ui, sans-serif;
+  --mono:       'IBM Plex Mono', monospace;
+  --radius:     4px;
+  --shadow:     0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.04);
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text1);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
+
+input, button, select, textarea { font-family: var(--font); font-size: 14px; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; opacity: 0.5; }
+input:focus, select:focus { outline: 2px solid var(--green); outline-offset: 1px; }
+input:focus:not(:focus-visible) { outline: none; }
+input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
+select { -webkit-appearance: none; }

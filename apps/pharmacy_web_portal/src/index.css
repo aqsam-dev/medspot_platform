@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Leaflet (keep this) */
+@import url("https://unpkg.com/leaflet/dist/leaflet.css");
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,   /* filled icons */
+    'wght' 500, /* medium weight */
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+.icon-filled {
+  font-variation-settings: 'FILL' 1;
+}
+
+.icon-medium {
+  font-variation-settings: 'wght' 500;
+}
+
+.icon-bold {
+  font-variation-settings: 'wght' 600;
+}

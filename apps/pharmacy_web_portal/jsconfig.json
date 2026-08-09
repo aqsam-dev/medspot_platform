@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "api/*": ["pharmacy/dashboard/api/*"],
+      "assets/*": ["pharmacy/dashboard/assets/*"],
+      "components/*": ["pharmacy/dashboard/components/*"],
+      "contexts/*": ["pharmacy/dashboard/contexts/*"],
+      "data/*": ["pharmacy/dashboard/data/*"],
+      "hooks/*": ["pharmacy/dashboard/hooks/*"],
+      "layout/*": ["pharmacy/dashboard/layout/*"],
+      "menu-items/*": ["pharmacy/dashboard/menu-items/*"],
+      "pages/*": ["pharmacy/dashboard/pages/*"],
+      "routes/*": ["pharmacy/dashboard/routes/*"],
+      "sections/*": ["pharmacy/dashboard/sections/*"],
+      "themes/*": ["pharmacy/dashboard/themes/*"],
+      "utils/*": ["pharmacy/dashboard/utils/*"]
+    }
+  }
+}

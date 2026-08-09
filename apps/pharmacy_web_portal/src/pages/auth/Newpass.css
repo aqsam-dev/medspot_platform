@@ -1,0 +1,140 @@
+/* Newpass.css */
+
+/* Spinner styles */
+.main-container .spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Password strength indicator */
+.main-container .password-strength {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.main-container .strength-bars {
+  display: flex;
+  gap: 3px;
+  flex: 1;
+}
+
+.main-container .strength-bar {
+  height: 4px;
+  flex: 1;
+  border-radius: 2px;
+  transition: background-color 0.3s;
+}
+
+.main-container .strength-text {
+  font-size: 12px;
+  color: #666;
+  white-space: nowrap;
+}
+
+/* Password requirements */
+.main-container .password-requirements {
+  background-color: #f8f9fa;
+  padding: 12px;
+  border-radius: 6px;
+  margin: 15px 0;
+  border: 1px solid #e9ecef;
+}
+
+.main-container .requirement-met {
+  color: #28a745;
+  text-decoration: line-through;
+}
+
+/* Password input container */
+.main-container .password-input-container {
+  position: relative;
+}
+
+.main-container .password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  padding: 4px;
+}
+
+.main-container .password-toggle:hover {
+  color: #2a4eca;
+}
+
+/* Form input styles */
+.main-container .form-input {
+  width: 100%;
+  padding: 12px 40px 12px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border 0.3s;
+}
+
+.main-container .form-input:focus {
+  outline: none;
+  border-color: #2a4eca;
+  box-shadow: 0 0 0 2px rgba(42, 78, 202, 0.25);
+}
+
+.main-container .form-input.error-input {
+  border-color: #dc3545;
+}
+
+/* Error messages */
+.main-container .error-text {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: 5px;
+  display: block;
+}
+
+.main-container .error-general {
+  background-color: #fee;
+  color: #c33;
+  padding: 10px;
+  border-radius: 4px;
+  margin: 15px 0;
+  text-align: center;
+  border: 1px solid #fcc;
+}
+
+/* Button styles */
+.main-container .btn-primary {
+  background-color: #2a4eca;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.main-container .btn-primary:hover:not(:disabled) {
+  background-color: #1e3aa3;
+}
+
+.main-container .btn-primary:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

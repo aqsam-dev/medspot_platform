@@ -1,0 +1,113 @@
+/* Otp.css */
+
+/* Spinner styles */
+.main-container .spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Email display */
+.main-container .email-display {
+  background: #f5f5f5;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin: 10px 0;
+  word-break: break-all;
+}
+
+/* Error messages */
+.main-container .error-general {
+  background-color: #fee;
+  color: #c33;
+  padding: 10px;
+  border-radius: 4px;
+  margin: 15px 0;
+  text-align: center;
+  border: 1px solid #fcc;
+}
+
+.main-container .error-general.success {
+  background-color: #e8f7ef;
+  color: #28a745;
+  border: 1px solid #b8e6c9;
+}
+
+/* OTP container and inputs */
+.main-container .otp-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 25px 0;
+}
+
+.main-container .otp-input {
+  width: 50px;
+  height: 60px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.main-container .otp-input:focus {
+  border-color: #2a4eca;
+  box-shadow: 0 0 0 2px rgba(42, 78, 202, 0.25);
+}
+
+.main-container .otp-input.error-input {
+  border-color: #dc3545;
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* Button styles */
+.main-container .btn-primary {
+  background-color: #2a4eca;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.main-container .btn-primary:hover:not(:disabled) {
+  background-color: #1e3aa3;
+}
+
+.main-container .btn-primary:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Clickable text */
+.main-container .clickable-text {
+  color: #2a4eca;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.main-container .clickable-text:hover {
+  color: #1e3aa3;
+}

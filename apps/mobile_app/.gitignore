@@ -1,0 +1,40 @@
+# Tool-generated files and directories
+.dart_tool/
+.dev_tools/
+.packages
+.pub-cache/
+.pub/
+build/
+
+# Web related
+.web_plugins/
+
+# Symbol lookupify caches
+.symlinks/
+
+# Avoid tracking local properties files
+android/local.properties
+android/key.properties
+android/app/google-services.json
+
+# iOS/macOS specific ignores
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
+ios/Pods/
+macos/Flutter/Generated.xcconfig
+macos/Flutter/flutter_export_environment.sh
+
+# IDE specific files (Optional, but highly recommended)
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.DS_Store
+
+# Crashlytics/Firebase generated files
+ios/FirebaseBuildConfig.json
+macos/FirebaseBuildConfig.json
+
+# Local environment variables
+.env*

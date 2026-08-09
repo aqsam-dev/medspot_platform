@@ -1,0 +1,64 @@
+/* Forgetpass.css */
+
+.main-container .spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.main-container .form-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border 0.3s;
+}
+
+.main-container .form-input:focus {
+  outline: none;
+  border-color: #2a4eca;
+  box-shadow: 0 0 0 2px rgba(42, 78, 202, 0.25);
+}
+
+.main-container .form-input.error-input {
+  border-color: #dc3545;
+}
+
+.main-container .error-text {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: 5px;
+  display: block;
+}
+
+.main-container .btn-primary {
+  background-color: #2a4eca;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.main-container .btn-primary:hover:not(:disabled) {
+  background-color: #1e3aa3;
+}
+
+.main-container .btn-primary:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

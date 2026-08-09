@@ -1,0 +1,15 @@
+POST http://localhost:5000/api/pharmacy/register
+Content-Type: application/json
+
+{
+  "owner_name": "Test Owner",
+  "email": "testowner@example.com",
+  "phone_number": "03001234567",
+  "cnic": "12345-1234567-1",
+  "pharmacy_name": "Test Pharmacy",
+  "address": "Main Market, Lahore",
+  "city": "Lahore",
+  "area": "DHA",
+  "username": "testpharma",
+  "password": "password123"
+}

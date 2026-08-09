@@ -1,0 +1,34 @@
+# Secrets
+.env
+.env.*
+!.env.example
+serviceAccountKey.json
+*-service-account*.json
+*.pem
+*.key
+
+# WhatsApp session/cache
+.wwebjs_auth/
+.wwebjs_cache/
+
+# Node / Python / Flutter generated files
+node_modules/
+venv/
+.dart_tool/
+__pycache__/
+dist/
+build/
+coverage/
+
+# Runtime files
+uploads/
+logs/
+*.log
+
+# Editor files
+.vscode/
+.idea/
+.DS_Store
+# Flutter generated files
+.flutter-plugins
+.flutter-plugins-dependencies

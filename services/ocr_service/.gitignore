@@ -1,0 +1,27 @@
+# Virtual Environment (VERY IMPORTANT)
+Include/
+Lib/
+Scripts/
+share/
+pyvenv.cfg
+venv/
+.env/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Logs / temp files
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Uploaded / runtime files (optional depending on project)
+uploads/
+
+# IDE files
+.vscode/
+.idea/

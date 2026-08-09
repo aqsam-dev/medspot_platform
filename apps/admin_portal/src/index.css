@@ -1,0 +1,38 @@
+@import "tailwindcss";
+/* Mobile responsive table scrolling */
+* {
+  box-sizing: border-box;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Mobile responsive overrides */
+@media (max-width: 768px) {
+  /* Tables scroll on mobile */
+  table {
+    min-width: 600px !important;
+  }
+
+  /* Stat cards stack on mobile */
+  .stat-row {
+    flex-direction: column !important;
+  }
+
+  /* Grid becomes single column on mobile */
+  .grid-2col {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Reduce font sizes on mobile */
+  h1 {
+    font-size: 22px !important;
+  }
+}
+
+/* Prevent body scroll when mobile sidebar open */
+body.sidebar-open {
+  overflow: hidden;
+}
