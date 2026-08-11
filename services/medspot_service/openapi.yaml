@@ -1,0 +1,888 @@
+openapi: 3.0.3
+info:
+  title: MedSpot API
+  description: >
+    Full-stack medicine availability and reservation platform connecting
+    patients with nearby pharmacies. Covers patient, pharmacy, admin,
+    POS integration, and notification endpoints.
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000
+    description: Local development server
+
+tags:
+  - name: Patient
+  - name: Pharmacy
+  - name: Admin
+  - name: POS
+  - name: Notifications
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+paths:
+
+  # ===================== PATIENT =====================
+  /api/patient/register:
+    post:
+      tags: [Patient]
+      summary: Register a new patient account
+      responses:
+        "201": { description: Patient registered successfully }
+
+  /api/patient/login:
+    post:
+      tags: [Patient]
+      summary: Patient login
+      responses:
+        "200": { description: Login successful, returns JWT }
+
+  /api/patient/forgot-password:
+    post:
+      tags: [Patient]
+      summary: Request password reset OTP
+      responses:
+        "200": { description: OTP sent }
+
+  /api/patient/verify-otp:
+    post:
+      tags: [Patient]
+      summary: Verify OTP for password reset
+      responses:
+        "200": { description: OTP verified }
+
+  /api/patient/reset-password:
+    post:
+      tags: [Patient]
+      summary: Reset patient password
+      responses:
+        "200": { description: Password reset successful }
+
+  /api/patient/google-login:
+    post:
+      tags: [Patient]
+      summary: Log in or register a patient via Google OAuth
+      responses:
+        "200": { description: Login successful }
+
+  /api/patient/profile:
+    get:
+      tags: [Patient]
+      summary: Get logged-in patient's profile
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200": { description: Patient profile }
+
+  /api/patient/update-name:
+    put:
+      tags: [Patient]
+      summary: Update patient's name
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200": { description: Name updated }
+
+  /api/patient/update-email:
+    put:
+      tags: [Patient]
+      summary: Update patient's email
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200": { description: Email updated }
+
+  /api/patient/update-password:
+    put:
+      tags: [Patient]
+      summary: Update patient's password
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200": { description: Password updated }
+
+  /api/patient/update-profile:
+    put:
+      tags: [Patient]
+      summary: Update patient's full profile
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200": { description: Profile updated }
+
+  /api/patient/search-medicines:
+    get:
+      tags: [Patient]
+      summary: Search for medicines by name
+      responses:
+        "200": { description: List of matching medicines }
+
+  /api/patient/nearby-pharmacies:
+    get:
+      tags: [Patient]
+      summary: Get pharmacies near the patient's location
+      responses:
+        "200": { description: List of nearby pharmacies }
+
+  /api/patient/search:
+    post:
+      tags: [Patient]
+      summary: Search pharmacies with filters
+      responses:
+        "200": { description: Filtered pharmacy results }
+
+  /api/patient/reservations:
+    post:
+      tags: [Patient]
+      summary: Create a new medicine reservation
+      responses:
+        "201": { description: Reservation created }
+
+  /api/patient/reservations/patient/{userId}:
+    get:
+      tags: [Patient]
+      summary: Get all reservations for a patient
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: List of reservations }
+
+  /api/patient/reservations/{reservationId}:
+    get:
+      tags: [Patient]
+      summary: Get details of a specific reservation
+      parameters:
+        - name: reservationId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Reservation details }
+    delete:
+      tags: [Patient]
+      summary: Cancel a reservation
+      parameters:
+        - name: reservationId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Reservation cancelled }
+
+  /api/patient/prescriptions:
+    post:
+      tags: [Patient]
+      summary: Upload a prescription image for OCR processing
+      responses:
+        "201": { description: Prescription uploaded and queued for OCR }
+
+  /api/patient/prescriptions/patient/{patientId}:
+    get:
+      tags: [Patient]
+      summary: Get all prescriptions uploaded by a patient
+      parameters:
+        - name: patientId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: List of prescriptions }
+
+  /api/patient/prescriptions/responses/prescription/{prescriptionId}:
+    get:
+      tags: [Patient]
+      summary: Get pharmacy responses to a specific prescription
+      parameters:
+        - name: prescriptionId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: List of pharmacy responses }
+
+  /api/patient/reviews/add:
+    post:
+      tags: [Patient]
+      summary: Submit a pharmacy review
+      security: [{ bearerAuth: [] }]
+      responses:
+        "201": { description: Review submitted }
+
+  /api/patient/reviews/{pharmacyId}:
+    get:
+      tags: [Patient]
+      summary: Get all reviews for a pharmacy
+      parameters:
+        - name: pharmacyId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: List of reviews }
+
+  /api/patient/reviews/check/{reservationId}:
+    get:
+      tags: [Patient]
+      summary: Check whether a reservation has already been reviewed
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - name: reservationId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Review status }
+
+  /api/patient/favorite-pharmacies:
+    get:
+      tags: [Patient]
+      summary: Get patient's favorite pharmacies
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200": { description: List of favorite pharmacies }
+
+  /api/patient/favorite-pharmacies/{pharmacyId}/status:
+    get:
+      tags: [Patient]
+      summary: Check if a pharmacy is marked as favorite
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - name: pharmacyId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Favorite status }
+
+  /api/patient/favorite-pharmacies/{pharmacyId}:
+    post:
+      tags: [Patient]
+      summary: Add a pharmacy to favorites
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - name: pharmacyId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "201": { description: Added to favorites }
+    delete:
+      tags: [Patient]
+      summary: Remove a pharmacy from favorites
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - name: pharmacyId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Removed from favorites }
+
+  # ===================== PHARMACY =====================
+  /api/pharmacy/register:
+    post:
+      tags: [Pharmacy]
+      summary: Register a new pharmacy account
+      responses:
+        "201": { description: Pharmacy registered, pending admin approval }
+
+  /api/pharmacy/login:
+    post:
+      tags: [Pharmacy]
+      summary: Pharmacy login
+      responses:
+        "200": { description: Login successful, returns JWT }
+
+  /api/pharmacy/check-email:
+    get:
+      tags: [Pharmacy]
+      summary: Check if an owner email is already registered
+      responses:
+        "200": { description: Availability status }
+
+  /api/pharmacy/check-username:
+    get:
+      tags: [Pharmacy]
+      summary: Check if a username is already taken
+      responses:
+        "200": { description: Availability status }
+
+  /api/pharmacy/check-cnic:
+    get:
+      tags: [Pharmacy]
+      summary: Check if an owner CNIC is already registered
+      responses:
+        "200": { description: Availability status }
+
+  /api/pharmacy/forgot-password:
+    post:
+      tags: [Pharmacy]
+      summary: Request password reset OTP
+      responses:
+        "200": { description: OTP sent }
+
+  /api/pharmacy/verify-otp:
+    post:
+      tags: [Pharmacy]
+      summary: Verify OTP for password reset
+      responses:
+        "200": { description: OTP verified }
+
+  /api/pharmacy/resend-otp:
+    post:
+      tags: [Pharmacy]
+      summary: Resend OTP
+      responses:
+        "200": { description: OTP resent }
+
+  /api/pharmacy/reset-password:
+    post:
+      tags: [Pharmacy]
+      summary: Reset pharmacy password
+      responses:
+        "200": { description: Password reset successful }
+
+  /api/pharmacy-profile/profile/{id}:
+    get:
+      tags: [Pharmacy]
+      summary: Get pharmacy profile
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Pharmacy profile }
+
+  /api/pharmacy-profile/basic-info/{id}:
+    put:
+      tags: [Pharmacy]
+      summary: Update pharmacy's basic info
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Basic info updated }
+
+  /api/pharmacy-profile/address/{id}:
+    put:
+      tags: [Pharmacy]
+      summary: Update pharmacy's address
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Address updated }
+
+  /api/pharmacy-profile/operating-hours/{id}:
+    put:
+      tags: [Pharmacy]
+      summary: Update pharmacy's operating hours
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Operating hours updated }
+
+  /api/pharmacy-profile/pharmacist/{id}:
+    put:
+      tags: [Pharmacy]
+      summary: Update pharmacist information
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Pharmacist info updated }
+
+  /api/pharmacy-profile/change-username:
+    put:
+      tags: [Pharmacy]
+      summary: Change pharmacy username
+      responses:
+        "200": { description: Username changed }
+
+  /api/pharmacy-profile/change-password:
+    put:
+      tags: [Pharmacy]
+      summary: Change pharmacy password
+      responses:
+        "200": { description: Password changed }
+
+  /api/pharmacy-staff:
+    post:
+      tags: [Pharmacy]
+      summary: Add a new staff member
+      security: [{ bearerAuth: [] }]
+      responses:
+        "201": { description: Staff member added }
+    get:
+      tags: [Pharmacy]
+      summary: Get all staff members
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200": { description: List of staff members }
+
+  /api/pharmacy-staff/{staffId}:
+    put:
+      tags: [Pharmacy]
+      summary: Update a staff member
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - name: staffId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Staff member updated }
+    delete:
+      tags: [Pharmacy]
+      summary: Remove a staff member
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - name: staffId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Staff member removed }
+
+  /api/pharmacy-staff/{staffId}/toggle:
+    patch:
+      tags: [Pharmacy]
+      summary: Toggle a staff member's WhatsApp notification setting
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - name: staffId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: WhatsApp setting toggled }
+
+  /api/pharmacy/reservations:
+    get:
+      tags: [Pharmacy]
+      summary: Get all reservations for the pharmacy
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200": { description: List of reservations }
+
+  /api/pharmacy/reservations/stats:
+    get:
+      tags: [Pharmacy]
+      summary: Get reservation statistics
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200": { description: Reservation stats }
+
+  /api/pharmacy/reservations/{id}:
+    get:
+      tags: [Pharmacy]
+      summary: Get a specific reservation
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Reservation details }
+
+  /api/pharmacy/reservations/{id}/completed:
+    put:
+      tags: [Pharmacy]
+      summary: Mark a reservation as completed
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Reservation marked completed }
+
+  /api/pharmacy-dashboard/stats:
+    get:
+      tags: [Pharmacy]
+      summary: Get pharmacy dashboard stats
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200": { description: Dashboard stats }
+
+  /api/pharmacy-dashboard/recent-activity:
+    get:
+      tags: [Pharmacy]
+      summary: Get recent pharmacy activity feed
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200": { description: Recent activity }
+
+  /api/pharmacy-dashboard/revenue-chart:
+    get:
+      tags: [Pharmacy]
+      summary: Get pharmacy revenue chart data
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200": { description: Revenue chart data }
+
+  /api/pharmacy/reviews:
+    get:
+      tags: [Pharmacy]
+      summary: Get reviews left for the pharmacy
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200": { description: List of reviews }
+
+  /api/pharmacy/prescriptions:
+    get:
+      tags: [Pharmacy]
+      summary: Get all prescriptions sent to the pharmacy
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200": { description: List of prescriptions }
+    post:
+      tags: [Pharmacy]
+      summary: Send a response to a prescription (accept/reject/offer)
+      security: [{ bearerAuth: [] }]
+      responses:
+        "201": { description: Response sent }
+
+  /api/pharmacy/prescriptions/{id}/medicines:
+    get:
+      tags: [Pharmacy]
+      summary: Get medicines extracted (via OCR) from a prescription
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Extracted medicine list }
+
+  # ===================== ADMIN =====================
+  /api/admin/dashboard:
+    get:
+      tags: [Admin]
+      summary: Get admin dashboard overview
+      responses:
+        "200": { description: Dashboard overview }
+
+  /api/admin/dashboard/login:
+    post:
+      tags: [Admin]
+      summary: Admin login
+      responses:
+        "200": { description: Login successful, returns JWT }
+
+  /api/admin/dashboard/reservations:
+    get:
+      tags: [Admin]
+      summary: Get reservation analytics
+      responses:
+        "200": { description: Reservation analytics data }
+
+  /api/admin/dashboard/prescriptions:
+    get:
+      tags: [Admin]
+      summary: Get prescription analytics
+      responses:
+        "200": { description: Prescription analytics data }
+
+  /api/admin/pharmacy-verification/pending:
+    get:
+      tags: [Admin]
+      summary: Get pharmacies pending verification
+      responses:
+        "200": { description: List of pending pharmacies }
+
+  /api/admin/pharmacy-verification/{id}:
+    get:
+      tags: [Admin]
+      summary: Get verification details for a pharmacy
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Pharmacy verification details }
+
+  /api/admin/pharmacy-verification/{id}/approve:
+    put:
+      tags: [Admin]
+      summary: Approve a pharmacy's registration
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Pharmacy approved }
+
+  /api/admin/pharmacy-verification/{id}/reject:
+    put:
+      tags: [Admin]
+      summary: Reject a pharmacy's registration
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Pharmacy rejected }
+
+  /api/admin/pharmacies:
+    get:
+      tags: [Admin]
+      summary: Get all pharmacies
+      responses:
+        "200": { description: List of pharmacies }
+
+  /api/admin/pharmacies/{id}:
+    get:
+      tags: [Admin]
+      summary: Get a pharmacy by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Pharmacy details }
+
+  /api/admin/pharmacies/{id}/block:
+    patch:
+      tags: [Admin]
+      summary: Block a pharmacy
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Pharmacy blocked }
+
+  /api/admin/pharmacies/{id}/unblock:
+    patch:
+      tags: [Admin]
+      summary: Unblock a pharmacy
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Pharmacy unblocked }
+
+  /api/admin/users:
+    get:
+      tags: [Admin]
+      summary: Get all users
+      responses:
+        "200": { description: List of users }
+
+  /api/admin/users/stats:
+    get:
+      tags: [Admin]
+      summary: Get user statistics
+      responses:
+        "200": { description: User stats }
+
+  /api/admin/users/{id}:
+    get:
+      tags: [Admin]
+      summary: Get a user by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: User details }
+
+  /api/admin/users/{id}/block:
+    put:
+      tags: [Admin]
+      summary: Block a user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: User blocked }
+
+  /api/admin/users/{id}/unblock:
+    put:
+      tags: [Admin]
+      summary: Unblock a user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: User unblocked }
+
+  /api/admin/reservations:
+    get:
+      tags: [Admin]
+      summary: Get all reservations (platform-wide)
+      responses:
+        "200": { description: List of reservations }
+
+  /api/admin/reservations/{id}:
+    get:
+      tags: [Admin]
+      summary: Get a reservation by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Reservation details }
+
+  /api/admin/prescriptions:
+    get:
+      tags: [Admin]
+      summary: Get all prescriptions (platform-wide)
+      responses:
+        "200": { description: List of prescriptions }
+
+  /api/admin/prescriptions/{id}:
+    get:
+      tags: [Admin]
+      summary: Get a prescription by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Prescription details }
+
+  /api/admin/medicines:
+    get:
+      tags: [Admin]
+      summary: Get all medicines in the system catalog
+      responses:
+        "200": { description: List of medicines }
+    post:
+      tags: [Admin]
+      summary: Add a new medicine to the catalog
+      responses:
+        "201": { description: Medicine added }
+
+  /api/admin/medicines/{id}:
+    put:
+      tags: [Admin]
+      summary: Update a medicine's details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Medicine updated }
+    delete:
+      tags: [Admin]
+      summary: Delete a medicine from the catalog
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Medicine deleted }
+
+  /api/admin/audit-logs:
+    get:
+      tags: [Admin]
+      summary: Get platform audit logs
+      responses:
+        "200": { description: List of audit log entries }
+
+  # ===================== POS / INTEGRATION =====================
+  /api/pos/connection:
+    post:
+      tags: [POS]
+      summary: Save a POS system connection configuration
+      responses:
+        "200": { description: Connection saved }
+
+  /api/pos/test:
+    post:
+      tags: [POS]
+      summary: Test a POS connection
+      responses:
+        "200": { description: Connection test result }
+
+  /api/pos/sync:
+    post:
+      tags: [POS]
+      summary: Sync inventory from the POS system
+      responses:
+        "200": { description: Inventory synced }
+
+  /api/pos/reservations:
+    post:
+      tags: [POS]
+      summary: Create a reservation via POS integration
+      responses:
+        "201": { description: Reservation created }
+
+  /api/pos/reservations/{id}/cancel:
+    post:
+      tags: [POS]
+      summary: Cancel a reservation via POS integration
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Reservation cancelled }
+
+  /api/pos/status/{pharmacyId}:
+    get:
+      tags: [POS]
+      summary: Get POS system status for a pharmacy
+      parameters:
+        - name: pharmacyId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: POS status }
+
+  /api/pos/history/{pharmacyId}:
+    get:
+      tags: [POS]
+      summary: Get POS transaction history for a pharmacy
+      parameters:
+        - name: pharmacyId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: POS transaction history }
+
+  # ===================== NOTIFICATIONS =====================
+  /api/notifications:
+    get:
+      tags: [Notifications]
+      summary: Get notifications for the logged-in user
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200": { description: List of notifications }

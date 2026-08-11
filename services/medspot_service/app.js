@@ -3,6 +3,10 @@ const cors = require('cors');
 const http = require("http");
 const socketService = require("./utils/socketservice");
 const whatsappClient = require("./utils/whatsappClient");
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yaml');
+const fs = require('fs');
+const swaggerDocument = YAML.parse(fs.readFileSync('./openapi.yaml', 'utf8'));
 require('dotenv').config();
 const app = express();
 app.use(cors());
@@ -85,7 +89,8 @@ app.use("/api/pharmacy-dashboard",pharmacydashboardRoutes);
 app.use( "/api/notifications", require("./routes/notificationRoutes" ));
 app.use("/api/pharmacy/reviews",pharmacyReviewRoutes);
 app.use("/api/pharmacy/prescriptions",pharmacyprescriptionRoute);
-
+//swaggerUIRoutesDocumentation
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Test route
 app.get('/', (req, res) => {
