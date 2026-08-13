@@ -34,6 +34,28 @@ React.js, Node.js, Express.js, PostgreSQL, Flutter, Python (FastAPI), EasyOCR, S
 - Admin portal for platform-wide management
 - Integrated point-of-sale system for in-pharmacy transactions
 
+## Screenshots
+
+### Pharmacy Web Portal
+
+| Dashboard | Prescription Management |
+|---|---|
+| ![Pharmacy dashboard](docs/screenshots/pharmacy_web_portal/pharmacydashbaord.png) | ![Prescription portal](docs/screenshots/pharmacy_web_portal/prescriptionportal.png) |
+
+| Reservation Management | POS Integration |
+|---|---|
+| ![Reservation management](docs/screenshots/pharmacy_web_portal/reservationmanagement.png) | ![POS integration](docs/screenshots/pharmacy_web_portal/posintegration.png) |
+
+### Admin Portal
+
+| Admin Dashboard | Pharmacy Verification |
+|---|---|
+| ![Admin dashboard](docs/screenshots/admin_portal/admindashboard.png) | ![Pharmacy verification](docs/screenshots/admin_portal/pharmacyverification.png) |
+
+| Prescription Management | Reservation Management |
+|---|---|
+| ![Prescription management](docs/screenshots/admin_portal/prescriptionmanagement.png) | ![Reservation management](docs/screenshots/admin_portal/reservationmanagement.png) |
+
 ## Modules
 
 - Patient mobile application (Flutter)
