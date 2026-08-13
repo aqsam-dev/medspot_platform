@@ -36,6 +36,16 @@ React.js, Node.js, Express.js, PostgreSQL, Flutter, Python (FastAPI), EasyOCR, S
 
 ## Screenshots
 
+### Mobile Application
+
+| Login Page | Home Page |
+|---|---|
+| ![Login Page](docs/screenshots/mobile_app/userloginpage.png) | ![Home Page](docs/screenshots/mobile_app/userdashboard.png) |
+
+| Prescription Page | Result Page |
+|---|---|
+| ![Prescription Page](docs/screenshots/mobile_app/prescriptionportal.png) | ![Result Page](docs/screenshots/mobile_app/medicinesearchresult.png) |
+
 ### Pharmacy Web Portal
 
 | Dashboard | Prescription Management |
