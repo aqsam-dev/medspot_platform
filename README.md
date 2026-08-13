@@ -115,6 +115,28 @@ flutter pub get
 flutter run
 ```
 
+## API Documentation
+
+MedSpot provides two API services with interactive Swagger documentation.
+
+### MedSpot Backend API
+
+The main backend manages authentication, patients, pharmacies, prescriptions, reservations, staff, notifications, inventory, POS sales, and administration.
+
+After starting the backend service, open Swagger UI:
+
+- [Open MedSpot Backend API Documentation](http://localhost:5000/api-docs)
+
+### OCR Service API
+
+The OCR service processes uploaded prescription images and extracts medicine information, including medicine name, dosage, frequency, and confidence.
+
+After starting the OCR service, open Swagger UI:
+
+- [Open OCR Service API Documentation](http://localhost:8000/docs)
+
+> These documentation links work locally while their respective services are running.
+
 ## About this project
 
 Built as a hands-on full-stack project to explore real-world healthcare application development — including OCR integration, real-time systems, role-based access control, and coordinating multiple client applications around a shared backend.
