@@ -34,6 +34,38 @@ React.js, Node.js, Express.js, PostgreSQL, Flutter, Python (FastAPI), EasyOCR, S
 - Admin portal for platform-wide management
 - Integrated point-of-sale system for in-pharmacy transactions
 
+## Screenshots
+
+### Mobile Application
+
+| Login Page | Home Page |
+|---|---|
+| ![Login Page](docs/screenshots/mobile_app/userloginpage.png) | ![Home Page](docs/screenshots/mobile_app/userdashboard.png) |
+
+| Prescription Page | Result Page |
+|---|---|
+| ![Prescription Page](docs/screenshots/mobile_app/prescriptionportal.png) | ![Result Page](docs/screenshots/mobile_app/medicinesearchresult.png) |
+
+### Pharmacy Web Portal
+
+| Dashboard | Prescription Management |
+|---|---|
+| ![Pharmacy dashboard](docs/screenshots/pharmacy_web_portal/pharmacydashbaord.png) | ![Prescription portal](docs/screenshots/pharmacy_web_portal/prescriptionportal.png) |
+
+| Reservation Management | POS Integration |
+|---|---|
+| ![Reservation management](docs/screenshots/pharmacy_web_portal/reservationmanagement.png) | ![POS integration](docs/screenshots/pharmacy_web_portal/posintegration.png) |
+
+### Admin Portal
+
+| Admin Dashboard | Pharmacy Verification |
+|---|---|
+| ![Admin dashboard](docs/screenshots/admin_portal/admindashboard.png) | ![Pharmacy verification](docs/screenshots/admin_portal/pharmacyverification.png) |
+
+| Prescription Management | Reservation Management |
+|---|---|
+| ![Prescription management](docs/screenshots/admin_portal/prescriptionmanagement.png) | ![Reservation management](docs/screenshots/admin_portal/reservationmanagement.png) |
+
 ## Modules
 
 - Patient mobile application (Flutter)
@@ -92,6 +124,28 @@ cd apps/mobile_app
 flutter pub get
 flutter run
 ```
+
+## API Documentation
+
+MedSpot provides two API services with interactive Swagger documentation.
+
+### MedSpot Backend API
+
+The main backend manages authentication, patients, pharmacies, prescriptions, reservations, staff, notifications, inventory, POS sales, and administration.
+
+After starting the backend service, open Swagger UI:
+
+- [Open MedSpot Backend API Documentation](http://localhost:5000/api-docs)
+
+### OCR Service API
+
+The OCR service processes uploaded prescription images and extracts medicine information, including medicine name, dosage, frequency, and confidence.
+
+After starting the OCR service, open Swagger UI:
+
+- [Open OCR Service API Documentation](http://localhost:8000/docs)
+
+> These documentation links work locally while their respective services are running.
 
 ## About this project
 
