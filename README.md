@@ -23,7 +23,8 @@ medspot/
 
 ## Tech Stack
 
-React.js, Node.js, Express.js, PostgreSQL, Flutter, Python (FastAPI), EasyOCR, Socket.io
+React.js, Node.js, Express.js, PostgreSQL, Flutter, Python (FastAPI), EasyOCR, 
+Socket.io, Google OAuth 2.0, Google Maps API, Cloudinary
 
 ## Key Features
 
@@ -71,9 +72,9 @@ React.js, Node.js, Express.js, PostgreSQL, Flutter, Python (FastAPI), EasyOCR, S
 
 | Name | Role | GitHub |
 |---|---|---|
-| [Aqsam Shahid] | Team Lead · Backend (medspot_service) · OCR service integration .Pharmacy Web Portal | [@yourusername](https://github.com/yourusername) |
-| [Mahnoor ijaz] | Mobile App (Flutter) | [@username](https://github.com/username) |
-| [Malayka Mir]  | Admin Web Portal (React) | [@username](https://github.com/username) |
+| Aqsam Shahid | Backend (medspot_service) · OCR service integration .Pharmacy Web Portal | aqsam-dev((https://github.com/aqsam-dev)) |
+| Mahnoor ijaz | Mobile App (Flutter) | manooabbasi66-cloud (https://github.com/manooabbasi66-cloud) |
+| Malayka Mir  | Admin Web Portal (React) | malaykaamir01-alt (https://github.com/malaykaamir01-alt) |
 
 
 ## Modules
