@@ -1,7 +1,7 @@
 # MedSpot
 
 A full-stack healthcare platform connecting patients with nearby pharmacies to check real-time medicine availability and reserve prescriptions.
-
+   
 ## Overview
 
 MedSpot is organized as a monorepo containing multiple client applications backed by shared services — a pharmacy web portal, an admin portal, a patient-facing mobile app, and a point-of-sale system, all connecting to a common backend and a dedicated OCR service for reading prescriptions.
@@ -65,6 +65,16 @@ React.js, Node.js, Express.js, PostgreSQL, Flutter, Python (FastAPI), EasyOCR, S
 | Prescription Management | Reservation Management |
 |---|---|
 | ![Prescription management](docs/screenshots/admin_portal/prescriptionmanagement.png) | ![Reservation management](docs/screenshots/admin_portal/reservationmanagement.png) |
+
+
+## Contributors
+
+| Name | Role | GitHub |
+|---|---|---|
+| [Aqsam Shahid] | Team Lead · Backend (medspot_service) · OCR service integration .Pharmacy Web Portal | [@yourusername](https://github.com/yourusername) |
+| [Mahnoor ijaz] | Mobile App (Flutter) | [@username](https://github.com/username) |
+| [Malayka Mir]  | Admin Web Portal (React) | [@username](https://github.com/username) |
+
 
 ## Modules
 
